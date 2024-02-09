@@ -1,4 +1,4 @@
-                                                               Lakeside Hotel Management App 🏨
+                                Lakeside Hotel Management App 🏨
 
 This project is a comprehensive hotel management application built with React for the frontend and Spring Boot for the backend, utilizing MySQL for database management. It provides a complete solution for managing Lakeside Hotel operations, including room management, booking management, and user management.
 
