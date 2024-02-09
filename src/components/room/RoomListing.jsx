@@ -9,4 +9,4 @@ const RoomListing = () => {
 	)
 }
 
-export default RoomListing;
+export default RoomListing

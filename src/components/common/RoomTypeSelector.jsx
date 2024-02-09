@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { getRoomTypes } from '../utils/ApiFunctions';
+import React, { useState, useEffect } from "react"
+import { getRoomTypes } from "../utils/ApiFunctions"
 
 const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
-    const [roomTypes, setRoomTypes] = useState([""]);
-    const [showNewRoomTypeInput, setShowNewRoomTypeInput] = useState(false);
-	const [newRoomType, setNewRoomType] = useState("");
+	const [roomTypes, setRoomTypes] = useState([""])
+	const [showNewRoomTypeInput, setShowNewRoomTypeInput] = useState(false)
+	const [newRoomType, setNewRoomType] = useState("")
 
 	useEffect(() => {
 		getRoomTypes().then((data) => {
-		  if (Array.isArray(data)) {
-			setRoomTypes(data);
-		  } else {
-			// Handle the case where data is not an array
-			console.error("Invalid room types data:", data);
-		  }
-		});
-	  }, []);
+			setRoomTypes(data)
+		})
+	}, [])
 
-    const handleNewRoomTypeInputChange = (e) => {
+	const handleNewRoomTypeInputChange = (e) => {
 		setNewRoomType(e.target.value)
 	}
 
-    const handleAddNewRoomType = () => {
+	const handleAddNewRoomType = () => {
 		if (newRoomType !== "") {
 			setRoomTypes([...roomTypes, newRoomType])
 			setNewRoomType("")
@@ -29,10 +24,9 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
 		}
 	}
 
-
-  return (
-    <>
-        {roomTypes.length > 0 && (
+	return (
+		<>
+			{roomTypes.length > 0 && (
 				<div>
 					<select
 						required
@@ -72,9 +66,9 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
 					)}
 				</div>
 			)}
-
-    </>
-  )
+		</>
+	)
 }
 
-export default RoomTypeSelector;
+export default RoomTypeSelector
+

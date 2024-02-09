@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 import { NavLink, Link } from "react-router-dom"
-//import Logout from "../auth/Logout"
+import Logout from "../auth/Logout"
 
 
 const NavBar = () => {
@@ -71,7 +71,7 @@ const NavBar = () => {
 								className={`dropdown-menu ${showAccount ? "show" : ""}`}
 								aria-labelledby="navbarDropdown">
 								{isLoggedIn ? (
-									{}
+									<Logout />
 								) : (
 									<li>
 										<Link className="dropdown-item" to={"/login"}>

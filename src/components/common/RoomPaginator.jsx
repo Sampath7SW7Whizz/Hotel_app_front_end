@@ -19,4 +19,4 @@ const RoomPaginator = ({ currentPage, totalPages, onPageChange }) => {
 	)
 }
 
-export default RoomPaginator;
+export default RoomPaginator

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"
 
 export const api = axios.create({
 	baseURL: "http://localhost:9192"
@@ -20,7 +20,7 @@ export async function addRoom(photo, roomType, roomPrice) {
 	formData.append("roomPrice", roomPrice)
 
 	const response = await api.post("/rooms/add/new-room", formData,{
-		headers:getHeader()
+		headers: getHeader()
 	})
 	if (response.status === 201) {
 		return true
@@ -38,7 +38,6 @@ export async function getRoomTypes() {
 		throw new Error("Error fetching room types")
 	}
 }
-
 /* This function gets all rooms from the database */
 export async function getAllRooms() {
 	try {
@@ -60,7 +59,6 @@ export async function deleteRoom(roomId) {
 		throw new Error(`Error deleting room ${error.message}`)
 	}
 }
-
 /* This function update a room */
 export async function updateRoom(roomId, roomData) {
 	const formData = new FormData()
@@ -109,6 +107,20 @@ export async function getAllBookings() {
 	}
 }
 
+/* This function get booking by the cnfirmation code */
+export async function getBookingByConfirmationCode(confirmationCode) {
+	try {
+		const result = await api.get(`/bookings/confirmation/${confirmationCode}`)
+		return result.data
+	} catch (error) {
+		if (error.response && error.response.data) {
+			throw new Error(error.response.data)
+		} else {
+			throw new Error(`Error find booking : ${error.message}`)
+		}
+	}
+}
+
 /* This is the function to cancel user booking */
 export async function cancelBooking(bookingId) {
 	try {
@@ -126,20 +138,6 @@ export async function getAvailableRooms(checkInDate, checkOutDate, roomType) {
 		&checkOutDate=${checkOutDate}&roomType=${roomType}`
 	)
 	return result
-}
-
-/* This function get booking by the cnfirmation code */
-export async function getBookingByConfirmationCode(confirmationCode) {
-	try {
-		const result = await api.get(`/bookings/confirmation/${confirmationCode}`)
-		return result.data
-	} catch (error) {
-		if (error.response && error.response.data) {
-			throw new Error(error.response.data)
-		} else {
-			throw new Error(`Error find booking : ${error.message}`)
-		}
-	}
 }
 
 /* This function register a new user */
@@ -204,5 +202,18 @@ export async function getUser(userId, token) {
 		return response.data
 	} catch (error) {
 		throw error
+	}
+}
+
+/* This is the function to get user bookings by the user id */
+export async function getBookingsByUserId(userId, token) {
+	try {
+		const response = await api.get(`/bookings/user/${userId}/bookings`, {
+			headers: getHeader()
+		})
+		return response.data
+	} catch (error) {
+		console.error("Error fetching bookings:", error.message)
+		throw new Error("Failed to fetch bookings")
 	}
 }

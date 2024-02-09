@@ -54,8 +54,9 @@ body {
 
   /* Hotel custom color */
  .btn-hotel{
-  background-color: rgb(169, 77, 123);
-  color: #fff;
+  background-color: rgb(205, 17, 17);
+  border: black;
+  color: #171515;
   }
   .btn-hotel:hover{
   background-color: rgb(137, 127, 132);

@@ -43,4 +43,4 @@ const RoomFilter = ({ data, setFilteredData }) => {
 		</div>
 	)
 }
-export default RoomFilter;
+export default RoomFilter
